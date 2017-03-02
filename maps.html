@@ -39,18 +39,43 @@
           map: map,
           title: 'vestmanna',
           icon: "heart.png",
-          animation: google.maps.Animation.BOUNCE,
+          animation: google.maps.Animation.DROP,
 
 
         });
+
+
+
 
            var marker2 = new google.maps.Marker({
           position: myLatLng2,
           map: map,
           title: 'heima'
         });
+
+           map.addListener('center_changed', function() {
+          // 3 seconds after the center of the map has changed, pan back to the
+          // marker.
+          window.setTimeout(function() {
+            map.panTo(marker.getPosition());
+          }, 3000);
+        });
+
+        marker.addListener('click', function() {
+          map.setZoom(19);
+          map.setCenter(marker.getPosition());
+            window.alert("klik")
+        });
+
+          marker2.addListener('click', function() {
+          map.setZoom(19);
+          map.setCenter(marker2.getPosition());
+            window.alert("klik2")
+        });
       }
     </script>
+
+
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCipVdjphvsWwST4_MPGcdPMpxrETvlVmk&callback=initMap">
     </script>
