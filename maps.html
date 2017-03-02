@@ -1,83 +1,89 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>vestmanna</title>
     <style>
-      /* Always set the map height explicitly to define the size of the div
+        /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="map"></div>
     <script>
+        function initMap() {
+            var myLatLng = {
+                lat: 62.154389
+                , lng: -7.152572
+            };
 
-      function initMap() {
-        var myLatLng = {lat: 62.154389, lng:  -7.152572};
-        var myLatLng2 = {lat: 62.155071, lng:  -7.178579};
+            var myLatLng2 = {
+                lat: 62.155071
+                , lng: -7.178579
+            };
 
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15
+                , center: myLatLng
+            });
 
+            var marker = new google.maps.Marker({
+                position: myLatLng
+                , map: map
+                , title: 'vestmanna'
+                // icon: "heart.png"
+                , animation: google.maps.Animation.DROP
+            , });
 
+            var marker2 = new google.maps.Marker({
+                position: myLatLng2
+                , map: map
+                , title: 'heima'
+            });
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: myLatLng
-        });
+            map.addListener('center_changed', function () {
+                // 3 seconds after the center of the map has changed, pan back to the
+                // marker.
+                window.setTimeout(function () {
+                    map.panTo(marker.getPosition());
+                }, 3000);
+            });
 
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: 'vestmanna',
-          icon: "heart.png",
-          animation: google.maps.Animation.DROP,
+            marker.addListener('click', function () {
+                map.setZoom(19);
+                map.setCenter(marker.getPosition());
+                infoWindow.open(map, marker);
+            });
 
+            marker2.addListener('click', function () {
+                map.setZoom(19);
+                map.setCenter(marker2.getPosition());
+                window.alert("klik2")
+            });
 
-        });
+            var infoWindow = new google.maps.InfoWindow({
 
-
-
-
-           var marker2 = new google.maps.Marker({
-          position: myLatLng2,
-          map: map,
-          title: 'heima'
-        });
-
-           map.addListener('center_changed', function() {
-          // 3 seconds after the center of the map has changed, pan back to the
-          // marker.
-          window.setTimeout(function() {
-            map.panTo(marker.getPosition());
-          }, 3000);
-        });
-
-        marker.addListener('click', function() {
-          map.setZoom(19);
-          map.setCenter(marker.getPosition());
-            window.alert("klik")
-        });
-
-          marker2.addListener('click', function() {
-          map.setZoom(19);
-          map.setCenter(marker2.getPosition());
-            window.alert("klik2")
-        });
-      }
+                content:"<h1> hej daniel </h1>"
+            })
+        }
     </script>
-
-
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCipVdjphvsWwST4_MPGcdPMpxrETvlVmk&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCipVdjphvsWwST4_MPGcdPMpxrETvlVmk&callback=initMap">
     </script>
-  </body>
+</body>
+
 </html>
