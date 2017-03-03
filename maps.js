@@ -1,38 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="maps.css">
-    <title>vestmanna</title>
-</head>
-
-<body>
-        <h1>google maps</h1>
-    <div id="map"></div>
-    <div id="debug_info"></div>
-
-    <template id ="infowindow_template">
-        <h1 class="data_navn">overskrift</h1>
-        <img class="data_billede" src="20160930_182530.jpg" alt="billedetekst">
-        <p class ="data_beskrivelse">beskrivelse</p>
-    </template>
-
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="maps.js"></script>
-
-
-
-
-
-
-
-
-
-
-    <script>
-        function initMap() {
+     function initMap() {
             var myLatLng = {
                 lat: 62.154389
                 , lng: -7.152572
@@ -91,9 +57,5 @@
                 content: "<h1> hej daniel </h1> <br> <h2> her bor jeg </h2>"
             })
         }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCipVdjphvsWwST4_MPGcdPMpxrETvlVmk&callback=initMap">
-    </script>
-</body>
 
-</html>
+ async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCipVdjphvsWwST4_MPGcdPMpxrETvlVmk&callback=initMap"
